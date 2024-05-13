@@ -1,0 +1,29 @@
+{% include "header.html" %}
+        <h1>Past Orders</h1>
+
+        {% if orders %}
+        <ul>
+            {% for order in orders %}
+                <li>
+                    <strong>Order ID:</strong> {{ order['_id'] }}<br>
+                    <strong>Order Date:</strong> {{ order['orderdate'] }}<br>
+                    <ul>
+                        {% for detail in order['details'] %}
+                            <li>
+                                <strong>Product Code:</strong> {{ detail['code'] }}<br>
+                                <strong>Product Name:</strong> {{ detail['name'] }}<br>
+                                <strong>Quantity:</strong> {{ detail['qty'] }}<br>
+                                <strong>Subtotal:</strong> ${{ detail['subtotal'] }}<br>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+    <p>No past orders found.</p>
+    {% endif %}
+
+            <a href="/products">Continue Shopping</a>
+
+{% include "footer.html" %}
